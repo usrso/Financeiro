@@ -34,9 +34,9 @@
     --font-display: 'Syne', sans-serif;
     --font-mono: 'DM Mono', monospace;
   }
-
+ 
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-
+ 
   body {
     background: var(--bg);
     color: var(--text);
@@ -45,10 +45,10 @@
     min-height: 100dvh;
     overflow-x: hidden;
   }
-
+ 
   /* APP SHELL */
   .app { display: flex; flex-direction: column; min-height: 100vh; min-height: 100dvh; }
-
+ 
   /* HEADER */
   header {
     padding: 1rem 1.25rem 0;
@@ -97,7 +97,7 @@
   }
   .sync-dot.ok { background: var(--green); }
   .sync-dot.loading { background: var(--amber); animation: pulse 1s infinite; }
-
+ 
   /* NAV */
   nav {
     display: flex;
@@ -125,14 +125,14 @@
   }
   .nav-btn svg { width: 18px; height: 18px; }
   .nav-btn.active { color: var(--text); border-bottom-color: var(--accent); }
-
+ 
   /* MAIN CONTENT */
   main { flex: 1; overflow-y: auto; padding: 1.25rem; padding-bottom: 2rem; }
-
+ 
   /* SECTIONS */
   .section { display: none; }
   .section.active { display: block; }
-
+ 
   /* METRIC CARDS */
   .metrics {
     display: grid;
@@ -172,7 +172,7 @@
     margin-top: 4px;
     font-family: var(--font-mono);
   }
-
+ 
   /* AI INPUT */
   .ai-box {
     background: var(--surface);
@@ -240,6 +240,51 @@
   }
   .ai-send:active { transform: scale(0.93); }
   .ai-send:disabled { opacity: 0.4; cursor: not-allowed; }
+  .mic-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.15s;
+    color: var(--muted2);
+    font-size: 18px;
+  }
+  .mic-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .mic-btn.listening {
+    background: var(--red);
+    border-color: var(--red);
+    color: #fff;
+    animation: micPulse 1s infinite;
+  }
+  .mic-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+  @keyframes micPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,77,77,0.5); }
+    50% { box-shadow: 0 0 0 8px rgba(255,77,77,0); }
+  }
+  .voice-status {
+    margin-top: 8px;
+    font-size: 12px;
+    font-family: var(--font-mono);
+    color: var(--red);
+    min-height: 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .voice-status.hidden { display: none; }
+  .voice-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--red);
+    animation: pulse 0.8s infinite;
+    flex-shrink: 0;
+  }
   .ai-feedback {
     margin-top: 8px;
     font-size: 12px;
@@ -269,7 +314,7 @@
     white-space: nowrap;
   }
   .ai-chip:hover { border-color: var(--accent); color: var(--accent); }
-
+ 
   /* SECTION TITLE */
   .sec-title {
     font-size: 11px;
@@ -289,7 +334,7 @@
     padding: 2px 8px;
     font-size: 10px;
   }
-
+ 
   /* TRANSACTIONS */
   .tx-list { display: grid; gap: 8px; }
   .tx-item {
@@ -345,7 +390,7 @@
     font-family: var(--font-mono);
     margin-top: 2px;
   }
-
+ 
   /* CHART */
   .chart-box {
     background: var(--surface);
@@ -378,7 +423,7 @@
   }
   .bar-name { font-size: 9px; color: var(--muted); text-align: center; font-family: var(--font-mono); }
   .bar-amt { font-size: 9px; color: var(--muted2); font-family: var(--font-mono); }
-
+ 
   /* CARDS */
   .cards-list { display: grid; gap: 10px; }
   .card-item {
@@ -404,7 +449,7 @@
   }
   .progress-fill { height: 100%; border-radius: 2px; transition: width 0.4s; }
   .card-meta { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); font-family: var(--font-mono); }
-
+ 
   /* DEBTS */
   .debts-list { display: grid; gap: 10px; }
   .debt-item {
@@ -419,7 +464,7 @@
   .debt-remaining { font-size: 18px; font-weight: 800; font-family: var(--font-mono); color: var(--red); }
   .debt-meta { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); font-family: var(--font-mono); margin-top: 6px; }
   .debt-pct { color: var(--green); font-weight: 600; }
-
+ 
   /* EMPTY STATE */
   .empty {
     text-align: center;
@@ -431,7 +476,7 @@
     border-radius: 14px;
   }
   .empty-icon { font-size: 32px; display: block; margin-bottom: 10px; opacity: 0.5; }
-
+ 
   /* TOAST */
   .toast {
     position: fixed;
@@ -451,7 +496,7 @@
   .toast.show { transform: translateX(-50%) translateY(0); }
   .toast.ok { border-color: var(--green); color: var(--green); }
   .toast.err { border-color: var(--red); color: var(--red); }
-
+ 
   /* LOADING OVERLAY */
   .loading-overlay {
     position: fixed; inset: 0;
@@ -483,7 +528,7 @@
     background: var(--accent);
     animation: loadbar 1.5s ease-in-out infinite;
   }
-
+ 
   /* DELETE BTN */
   .del-btn {
     background: none;
@@ -497,7 +542,7 @@
     line-height: 1;
   }
   .del-btn:hover { color: var(--red); }
-
+ 
   /* FILTER CHIPS */
   .filter-chips { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 12px; scrollbar-width: none; }
   .filter-chips::-webkit-scrollbar { display: none; }
@@ -514,12 +559,12 @@
     transition: all 0.15s;
   }
   .f-chip.active { background: var(--accent); border-color: var(--accent); color: #000; font-weight: 600; }
-
+ 
   @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
   @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
   @keyframes loadbar { 0% { width: 0; margin-left: 0; } 50% { width: 100%; margin-left: 0; } 100% { width: 0; margin-left: 100%; } }
-
+ 
   @media (min-width: 600px) {
     .metrics { grid-template-columns: repeat(4, 1fr); }
     .metric.full { grid-column: span 4; }
@@ -528,13 +573,13 @@
 </style>
 </head>
 <body>
-
+ 
 <!-- LOADING -->
 <div class="loading-overlay" id="loading">
   <div class="loading-logo">◆ FINX</div>
   <div class="loading-bar-wrap"><div class="loading-bar"></div></div>
 </div>
-
+ 
 <div class="app">
   <header>
     <div class="logo">◆ FinX</div>
@@ -543,7 +588,7 @@
       <div class="sync-dot" id="sync-dot" title="Status Firebase"></div>
     </div>
   </header>
-
+ 
   <nav>
     <button class="nav-btn active" onclick="showTab('home',this)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
@@ -562,7 +607,7 @@
       Dívidas
     </button>
   </nav>
-
+ 
   <main>
     <!-- HOME -->
     <div class="section active" id="tab-home">
@@ -585,13 +630,15 @@
           <div class="metric-value amber" id="m-bill">R$0</div>
         </div>
       </div>
-
+ 
       <div class="ai-box">
         <div class="ai-label">Registrar lançamento</div>
         <div class="ai-row">
-          <input class="ai-input" id="ai-home" placeholder='Ex: "paguei 85 no uber"' autocomplete="off" />
+          <input class="ai-input" id="ai-home" placeholder='Fale ou digite: "paguei 85 no uber"' autocomplete="off" />
+          <button class="mic-btn" id="mic-home" onclick="toggleMic('ai-home','mic-home','voice-home','processHome')" title="Falar">🎙️</button>
           <button class="ai-send" id="ai-home-btn" onclick="processHome()">→</button>
         </div>
+        <div class="voice-status hidden" id="voice-home"><div class="voice-dot"></div>Ouvindo... fale agora</div>
         <div class="ai-feedback" id="ai-home-fb"></div>
         <div class="ai-examples">
           <span class="ai-chip" onclick="fillChip(this,'recebi salário 5000')">recebi salário 5000</span>
@@ -601,30 +648,32 @@
           <span class="ai-chip" onclick="fillChip(this,'farmácia 68')">farmácia 68</span>
         </div>
       </div>
-
+ 
       <div class="chart-box" id="chart-box" style="display:none">
         <div class="sec-title">Gastos por categoria</div>
         <div class="bars" id="bars"></div>
       </div>
-
+ 
       <div class="sec-title">
         Últimos lançamentos
         <span class="sec-count" id="home-count">0</span>
       </div>
       <div class="tx-list" id="tx-home"></div>
     </div>
-
+ 
     <!-- LANÇAMENTOS -->
     <div class="section" id="tab-lancamentos">
       <div class="ai-box">
         <div class="ai-label">Novo lançamento</div>
         <div class="ai-row">
-          <input class="ai-input" id="ai-lanc" placeholder='Descreva em linguagem natural...' autocomplete="off" />
+          <input class="ai-input" id="ai-lanc" placeholder='Fale ou digite o lançamento...' autocomplete="off" />
+          <button class="mic-btn" id="mic-lanc" onclick="toggleMic('ai-lanc','mic-lanc','voice-lanc','processLanc')" title="Falar">🎙️</button>
           <button class="ai-send" id="ai-lanc-btn" onclick="processLanc()">→</button>
         </div>
+        <div class="voice-status hidden" id="voice-lanc"><div class="voice-dot"></div>Ouvindo... fale agora</div>
         <div class="ai-feedback" id="ai-lanc-fb"></div>
       </div>
-
+ 
       <div class="filter-chips" id="filter-chips">
         <span class="f-chip active" data-filter="todos" onclick="setFilter('todos',this)">Todos</span>
         <span class="f-chip" data-filter="entrada" onclick="setFilter('entrada',this)">Entradas</span>
@@ -635,22 +684,24 @@
         <span class="f-chip" data-filter="saúde" onclick="setFilter('saúde',this)">Saúde</span>
         <span class="f-chip" data-filter="lazer" onclick="setFilter('lazer',this)">Lazer</span>
       </div>
-
+ 
       <div class="sec-title">
         Lançamentos
         <span class="sec-count" id="lanc-count">0</span>
       </div>
       <div class="tx-list" id="tx-all"></div>
     </div>
-
+ 
     <!-- CARTÕES -->
     <div class="section" id="tab-cartoes">
       <div class="ai-box">
         <div class="ai-label">Adicionar / atualizar cartão</div>
         <div class="ai-row">
           <input class="ai-input" id="ai-card" placeholder='Ex: "nubank fatura 1850 limite 8000"' autocomplete="off" />
+          <button class="mic-btn" id="mic-card" onclick="toggleMic('ai-card','mic-card','voice-card','processCard')" title="Falar">🎙️</button>
           <button class="ai-send" id="ai-card-btn" onclick="processCard()">→</button>
         </div>
+        <div class="voice-status hidden" id="voice-card"><div class="voice-dot"></div>Ouvindo... fale agora</div>
         <div class="ai-feedback" id="ai-card-fb"></div>
         <div class="ai-examples">
           <span class="ai-chip" onclick="fillChip2('ai-card','nubank fatura 1850 limite 8000')">nubank fatura 1850</span>
@@ -658,19 +709,21 @@
           <span class="ai-chip" onclick="fillChip2('ai-card','c6 fatura 980')">c6 fatura 980</span>
         </div>
       </div>
-
+ 
       <div class="sec-title">Meus cartões</div>
       <div class="cards-list" id="card-list"></div>
     </div>
-
+ 
     <!-- DÍVIDAS -->
     <div class="section" id="tab-dividas">
       <div class="ai-box">
         <div class="ai-label">Adicionar dívida</div>
         <div class="ai-row">
           <input class="ai-input" id="ai-debt" placeholder='Ex: "empréstimo banco 8000 pago 2000"' autocomplete="off" />
+          <button class="mic-btn" id="mic-debt" onclick="toggleMic('ai-debt','mic-debt','voice-debt','processDebt')" title="Falar">🎙️</button>
           <button class="ai-send" id="ai-debt-btn" onclick="processDebt()">→</button>
         </div>
+        <div class="voice-status hidden" id="voice-debt"><div class="voice-dot"></div>Ouvindo... fale agora</div>
         <div class="ai-feedback" id="ai-debt-fb"></div>
         <div class="ai-examples">
           <span class="ai-chip" onclick="fillChip2('ai-debt','empréstimo banco 8000 pago 2000')">empréstimo banco</span>
@@ -678,20 +731,20 @@
           <span class="ai-chip" onclick="fillChip2('ai-debt','financiamento carro 25000 pago 8000')">financiamento</span>
         </div>
       </div>
-
+ 
       <div class="sec-title">Minhas dívidas</div>
       <div class="debts-list" id="debt-list"></div>
     </div>
   </main>
 </div>
-
+ 
 <div class="toast" id="toast"></div>
-
+ 
 <!-- FIREBASE -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, setDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
+ 
 const firebaseConfig = {
   apiKey: "AIzaSyBPzrNOy7rSz5YbAXmGKlryXbEXTQHuSW4",
   authDomain: "meu-financeiro-fbb85.firebaseapp.com",
@@ -701,10 +754,10 @@ const firebaseConfig = {
   appId: "1:407706770522:web:ff0e7fee6cfd2e8fd78c63",
   measurementId: "G-BQSTTTBFD5"
 };
-
+ 
 const fbApp = initializeApp(firebaseConfig);
 const db = getFirestore(fbApp);
-
+ 
 // STATE
 let transactions = [];
 let cards = [];
@@ -712,7 +765,7 @@ let debts = [];
 let activeFilter = 'todos';
 let mesSelecionado = new Date().getMonth();
 let anoSelecionado = new Date().getFullYear();
-
+ 
 const MESES = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
 const CAT_COLOR = {
   'alimentação':'#00e676','mercado':'#00e676','restaurante':'#69f0ae',
@@ -734,7 +787,7 @@ const CAT_EMOJI = {
   'fatura':'💳','cartão':'💳',
   'outros':'📌'
 };
-
+ 
 // EXPOSE GLOBALS
 window.showTab = showTab;
 window.processHome = processHome;
@@ -748,7 +801,7 @@ window.cycleMes = cycleMes;
 window.deleteTx = deleteTx;
 window.deleteCard = deleteCard;
 window.deleteDebt = deleteDebt;
-
+ 
 function fmt(v) {
   if (v >= 1000) return 'R$' + (v/1000).toFixed(1).replace('.',',') + 'k';
   return 'R$' + Math.round(v).toLocaleString('pt-BR');
@@ -756,19 +809,19 @@ function fmt(v) {
 function fmtFull(v) {
   return 'R$ ' + v.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
-
+ 
 function setSyncDot(state) {
   const d = document.getElementById('sync-dot');
   d.className = 'sync-dot ' + state;
 }
-
+ 
 function toast(msg, type='ok') {
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.className = 'toast show ' + type;
   setTimeout(() => t.className = 'toast', 2800);
 }
-
+ 
 function showTab(name, btn) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -776,24 +829,24 @@ function showTab(name, btn) {
   if (btn) btn.classList.add('active');
   render();
 }
-
+ 
 function cycleMes() {
   mesSelecionado--;
   if (mesSelecionado < 0) { mesSelecionado = 11; anoSelecionado--; }
   document.getElementById('month-display').textContent = MESES[mesSelecionado] + ' ' + anoSelecionado;
   render();
 }
-
+ 
 function fillChip(el, text) { document.getElementById('ai-home').value = text; document.getElementById('ai-home').focus(); }
 function fillChip2(id, text) { document.getElementById(id).value = text; document.getElementById(id).focus(); }
-
+ 
 function setFilter(f, el) {
   activeFilter = f;
   document.querySelectorAll('.f-chip').forEach(c => c.classList.remove('active'));
   el.classList.add('active');
   renderTxAll();
 }
-
+ 
 // FIRESTORE LISTENERS
 function initListeners() {
   onSnapshot(query(collection(db,'transactions'), orderBy('ts','desc')), snap => {
@@ -801,35 +854,35 @@ function initListeners() {
     setSyncDot('ok');
     render();
   }, () => setSyncDot(''));
-
+ 
   onSnapshot(collection(db,'cards'), snap => {
     cards = snap.docs.map(d => ({id: d.id, ...d.data()}));
     renderCards();
     updateMetrics();
   });
-
+ 
   onSnapshot(collection(db,'debts'), snap => {
     debts = snap.docs.map(d => ({id: d.id, ...d.data()}));
     renderDebts();
   });
 }
-
+ 
 function render() { updateMetrics(); renderTxHome(); renderTxAll(); renderChart(); }
-
+ 
 function txDoMes() {
   return transactions.filter(t => {
     const d = new Date(t.ts);
     return d.getMonth() === mesSelecionado && d.getFullYear() === anoSelecionado;
   });
 }
-
+ 
 function updateMetrics() {
   const mes = txDoMes();
   const entradas = mes.filter(t => t.tipo==='entrada').reduce((s,t)=>s+t.valor,0);
   const saidas = mes.filter(t => t.tipo==='saida').reduce((s,t)=>s+t.valor,0);
   const saldo = entradas - saidas;
   const fatura = cards.reduce((s,c)=>s+(c.usado||0),0);
-
+ 
   document.getElementById('m-in').textContent = fmt(entradas);
   document.getElementById('m-out').textContent = fmt(saidas);
   const balEl = document.getElementById('m-bal');
@@ -838,7 +891,7 @@ function updateMetrics() {
   document.getElementById('m-bal-sub').textContent = saldo >= 0 ? '▲ positivo' : '▼ negativo';
   document.getElementById('m-bill').textContent = fmt(fatura);
 }
-
+ 
 function txCard(tx) {
   const color = CAT_COLOR[tx.categoria] || '#616161';
   const emoji = CAT_EMOJI[tx.categoria] || '📌';
@@ -862,7 +915,7 @@ function txCard(tx) {
     <button class="del-btn" onclick="deleteTx('${tx.id}')" title="Excluir">×</button>
   </div>`;
 }
-
+ 
 function renderTxHome() {
   const mes = txDoMes().slice(0, 8);
   const el = document.getElementById('tx-home');
@@ -873,14 +926,14 @@ function renderTxHome() {
   }
   el.innerHTML = mes.map(txCard).join('');
 }
-
+ 
 function renderTxAll() {
   const mes = txDoMes();
   let filtered = activeFilter === 'todos' ? mes :
     activeFilter === 'entrada' || activeFilter === 'saida'
       ? mes.filter(t => t.tipo === activeFilter)
       : mes.filter(t => t.categoria === activeFilter);
-
+ 
   document.getElementById('lanc-count').textContent = filtered.length;
   const el = document.getElementById('tx-all');
   if (!filtered.length) {
@@ -889,18 +942,18 @@ function renderTxAll() {
   }
   el.innerHTML = filtered.map(txCard).join('');
 }
-
+ 
 function renderChart() {
   const mes = txDoMes().filter(t => t.tipo === 'saida');
   const box = document.getElementById('chart-box');
   if (!mes.length) { box.style.display = 'none'; return; }
   box.style.display = 'block';
-
+ 
   const bycat = {};
   mes.forEach(t => { bycat[t.categoria] = (bycat[t.categoria]||0) + t.valor; });
   const sorted = Object.entries(bycat).sort((a,b)=>b[1]-a[1]).slice(0,6);
   const max = Math.max(...sorted.map(e=>e[1]));
-
+ 
   document.getElementById('bars').innerHTML = sorted.map(([cat,val]) => {
     const color = CAT_COLOR[cat] || '#616161';
     const pct = Math.round((val/max)*100);
@@ -912,7 +965,7 @@ function renderChart() {
     </div>`;
   }).join('');
 }
-
+ 
 function renderCards() {
   const el = document.getElementById('card-list');
   if (!cards.length) {
@@ -943,7 +996,7 @@ function renderCards() {
     </div>`;
   }).join('');
 }
-
+ 
 function renderDebts() {
   const el = document.getElementById('debt-list');
   if (!debts.length) {
@@ -970,7 +1023,7 @@ function renderDebts() {
     </div>`;
   }).join('');
 }
-
+ 
 // DELETE
 async function deleteTx(id) {
   setSyncDot('loading');
@@ -985,7 +1038,7 @@ async function deleteDebt(id) {
   await deleteDoc(doc(db,'debts',id));
   toast('Dívida removida');
 }
-
+ 
 // AI PARSING
 async function callClaude(text, systemPrompt) {
   const r = await fetch('https://api.anthropic.com/v1/messages', {
@@ -1002,7 +1055,7 @@ async function callClaude(text, systemPrompt) {
   const raw = data.content.map(b=>b.text||'').join('');
   return JSON.parse(raw.replace(/```json|```/g,'').trim());
 }
-
+ 
 function parseLocal(text) {
   text = text.toLowerCase();
   const valM = text.match(/(\d+[\.,]?\d*)/);
@@ -1015,19 +1068,19 @@ function parseLocal(text) {
   const desc = words.join(' ');
   return { tipo, valor, desc: desc.charAt(0).toUpperCase()+desc.slice(1), categoria };
 }
-
+ 
 async function processWithAI(inputId, btnId, fbId, onSuccess) {
   const input = document.getElementById(inputId);
   const btn = document.getElementById(btnId);
   const fb = document.getElementById(fbId);
   const text = input.value.trim();
   if (!text) return;
-
+ 
   btn.disabled = true;
   fb.textContent = '⏳ processando...';
   fb.className = 'ai-feedback';
   setSyncDot('loading');
-
+ 
   try {
     await onSuccess(text);
     input.value = '';
@@ -1038,7 +1091,7 @@ async function processWithAI(inputId, btnId, fbId, onSuccess) {
   }
   btn.disabled = false;
 }
-
+ 
 async function processHome() {
   await processWithAI('ai-home','ai-home-btn','ai-home-fb', async (text) => {
     const fb = document.getElementById('ai-home-fb');
@@ -1059,7 +1112,7 @@ async function processHome() {
     toast('✅ ' + result.desc + ' — ' + fmtFull(result.valor));
   });
 }
-
+ 
 async function processLanc() {
   await processWithAI('ai-lanc','ai-lanc-btn','ai-lanc-fb', async (text) => {
     const fb = document.getElementById('ai-lanc-fb');
@@ -1080,7 +1133,7 @@ async function processLanc() {
     toast('✅ Salvo no Firebase!');
   });
 }
-
+ 
 async function processCard() {
   await processWithAI('ai-card','ai-card-btn','ai-card-fb', async (text) => {
     const fb = document.getElementById('ai-card-fb');
@@ -1101,7 +1154,7 @@ Se não mencionar limite, coloque 0.`;
     toast('💳 ' + result.nome + ' salvo!');
   });
 }
-
+ 
 async function processDebt() {
   await processWithAI('ai-debt','ai-debt-btn','ai-debt-fb', async (text) => {
     const fb = document.getElementById('ai-debt-fb');
@@ -1116,7 +1169,83 @@ async function processDebt() {
     toast('⚠️ Dívida registrada!');
   });
 }
-
+ 
+ 
+// VOICE RECOGNITION
+let activeRecognition = null;
+ 
+function toggleMic(inputId, micBtnId, voiceStatusId, processFunc) {
+  if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+    toast('⚠️ Seu navegador não suporta reconhecimento de voz. Use Chrome.', 'err');
+    return;
+  }
+ 
+  const micBtn = document.getElementById(micBtnId);
+  const voiceStatus = document.getElementById(voiceStatusId);
+  const input = document.getElementById(inputId);
+ 
+  if (activeRecognition) {
+    activeRecognition.stop();
+    activeRecognition = null;
+    return;
+  }
+ 
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recognition = new SpeechRecognition();
+  recognition.lang = 'pt-BR';
+  recognition.interimResults = true;
+  recognition.maxAlternatives = 1;
+  recognition.continuous = false;
+ 
+  activeRecognition = recognition;
+  micBtn.classList.add('listening');
+  voiceStatus.classList.remove('hidden');
+  input.placeholder = 'Ouvindo...';
+ 
+  recognition.onresult = (event) => {
+    const transcript = Array.from(event.results)
+      .map(r => r[0].transcript)
+      .join('');
+    input.value = transcript;
+    if (event.results[0].isFinal) {
+      stopMic(micBtn, voiceStatus, inputId);
+      setTimeout(() => window[processFunc](), 300);
+    }
+  };
+ 
+  recognition.onerror = (e) => {
+    stopMic(micBtn, voiceStatus, inputId);
+    if (e.error === 'not-allowed') {
+      toast('⚠️ Permita o acesso ao microfone nas configurações.', 'err');
+    } else if (e.error !== 'aborted') {
+      toast('⚠️ Erro no microfone: ' + e.error, 'err');
+    }
+  };
+ 
+  recognition.onend = () => {
+    stopMic(micBtn, voiceStatus, inputId);
+    activeRecognition = null;
+  };
+ 
+  recognition.start();
+}
+ 
+function stopMic(micBtn, voiceStatus, inputId) {
+  micBtn.classList.remove('listening');
+  voiceStatus.classList.add('hidden');
+  const input = document.getElementById(inputId);
+  const placeholders = {
+    'ai-home': 'Fale ou digite: "paguei 85 no uber"',
+    'ai-lanc': 'Fale ou digite o lançamento...',
+    'ai-card': 'Ex: "nubank fatura 1850 limite 8000"',
+    'ai-debt': 'Ex: "empréstimo banco 8000 pago 2000"'
+  };
+  input.placeholder = placeholders[inputId] || 'Digite ou fale...';
+  if (activeRecognition) { try { activeRecognition.stop(); } catch(e){} activeRecognition = null; }
+}
+ 
+window.toggleMic = toggleMic;
+ 
 // KEYBOARD
 document.addEventListener('keydown', e => {
   if (e.key === 'Enter') {
@@ -1127,7 +1256,7 @@ document.addEventListener('keydown', e => {
     else if (active?.id === 'tab-dividas') processDebt();
   }
 });
-
+ 
 // INIT
 document.getElementById('month-display').textContent = MESES[mesSelecionado] + ' ' + anoSelecionado;
 initListeners();
@@ -1136,7 +1265,7 @@ setTimeout(() => {
   overlay.classList.add('hidden');
   setTimeout(() => overlay.remove(), 400);
 }, 1800);
-
+ 
 </script>
 </body>
 </html>
